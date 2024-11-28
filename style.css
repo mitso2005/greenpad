@@ -1,0 +1,82 @@
+/* Apply box-sizing to all elements */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 235, 201);
+    color: rgb(56, 56, 56);
+}
+
+.container-middle {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.toolbar {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+    padding: 15px;
+    background-color: rgb(204, 189, 163);
+    border-radius: 8px;
+}
+
+.toolbar button {
+    background-color: #5eb461;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.toolbar button:hover {
+    background-color: #45a049;
+}
+
+.editor {
+    width: 100%;
+    min-height: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    /* make adaptable later */
+    font-size: 16px; 
+    line-height: 1.25;
+    outline: none;
+    overflow-y: auto;
+    resize: vertical;
+}
+
+.editor:focus {
+    border-color: #5eb461;
+    box-shadow: 0 0 5px #45a049;
+}
+
+
+#wordCounter {
+    position: fixed;
+    top: 200px;
+    right: 20px;
+    background-color: #f9f9f9;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    z-index: 1000;
+}
