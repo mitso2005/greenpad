@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenPad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-middle">
+        <div class="toolbar">
+            <button onclick="document.execCommand('bold')">Bold</button>
+            <button onclick="document.execCommand('italic')">Italic</button>
+            <button onclick="document.execCommand('underline')">Underline</button>
+            <button onclick="clearText()">Clear</button>
+        </div>
+        <div id="editor" contenteditable="true" class="editor"></div>
+        <script src="script.js"></script>
+    </div>
+    <div class="word-goal">
+    </div>
+    <div class="container-left">
+        <div id="documents">
+            
+        </div>
+    </div>
+    <div class="container-right">
+        <div id="wordCounter">
+            <span id="wordCount">0</span> words until your goal is reached
+        </div>
+    </div>
+</body>
+</html>
