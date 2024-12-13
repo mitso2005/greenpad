@@ -17,17 +17,26 @@
         <div id="editor" contenteditable="true" class="editor"></div>
         <script src="script.js"></script>
     </div>
-    <div class="word-goal">
+
+    <div id= "setGoal" class="modal">
+        <div class="modal-contnet">
+            <h2>How much do you want to write a day?</h2>
+            <input type="number" min="1" id="goalInput" placeholder="Enter you goal daily word count">
+            <button onclick="setGoal()">Start Writing</button>
+        </div>
     </div>
+
     <div class="container-left">
         <div id="documents">
             
         </div>
     </div>
+
     <div class="container-right">
         <div id="wordCounter">
-            <span id="wordCount">0</span> words until your goal is reached
+            <span id="wordCount">0</span>
         </div>
     </div>
+
 </body>
 </html>
