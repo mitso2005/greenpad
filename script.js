@@ -1,4 +1,4 @@
-let goalWordCount = 0; // Global variable to store the goal word count
+let goalWordCount = 250; // Global variable to store the goal word count
 
 function clearText() {
     const editor = document.getElementById("editor");
@@ -7,12 +7,23 @@ function clearText() {
 
 document.addEventListener("DOMContentLoaded", () => {
     const editor = document.getElementById("editor");
+    const wordCountDisplay = document.getElementById("wordCounter");
+    const startWritingBtn = document.getElementById("startWritingBtn");
+
+    // Initially hide the word count
+    wordCountDisplay.style.display = "none";
+
+    // Add click event listener to the "Start Writing" button
+    startWritingBtn.addEventListener("click", () => {
+        // Show the word count when "Start Writing" is pressed
+        wordCountDisplay.style.display = "block";
+        
+        // Focus on the editor
+        editor.focus();
+    });
 
     // Add an input event listener to the editor
     editor.addEventListener("input", updateWordCount);
-
-    // Initial word count
-    updateWordCount();
 });
 
 // Goal popup when  the page loads
@@ -21,20 +32,28 @@ window.onload = function () {
     modal.style.display = "flex";
 }
 
-// Set goal word count and hide popup
+// Function to update the slider value display
+function updateSliderValue(value) {
+    document.getElementById("sliderValue").innerText = value;
+
+    // Update the slider's track color
+    const slider = document.getElementById("goalSlider");
+    const percentage = ((value - slider.min) / (slider.max - slider.min)) * 100;
+    slider.style.background = `linear-gradient(to right, green ${percentage}%, #d3d3d3 ${percentage}%)`;
+}
+// Function to set the goal word count and hide popup
 function setGoal() {
-    const goalInput = document.getElementById("goalInput").value;
-    if (goalInput && !isNaN(goalInput) && goalInput > 0) {
-        goalWordCount = parseInt(goalInput, 10); // Store the goal word count in the global variable
+    const sliderValue = document.getElementById("goalSlider").value;
+    goalWordCount = parseInt(sliderValue, 10);
 
-        // Hide the modal
-        document.getElementById("setGoal").style.display = "none";
+    // Hide the modal
+    document.getElementById("setGoal").style.display = "none";
 
-        // Update word count display to reflect the goal
-        updateWordCount();
-    } else {
-        alert("Please enter a valid positive number.");
-    }
+    //
+    const modal = document.getElementById("setGoal");
+
+    // Update word count display to reflect the goal
+    updateWordCount();
 }
 
 function updateWordCount() {

@@ -21,8 +21,16 @@
     <div id= "setGoal" class="modal">
         <div class="modal-contnet">
             <h2>How much do you want to write a day?</h2>
-            <input type="number" min="1" id="goalInput" placeholder="Enter you goal daily word count">
-            <button onclick="setGoal()">Start Writing</button>
+            <input 
+            type="range"
+            id="goalSlider"
+            min="50" 
+            max="2000" 
+            step="10" 
+            value="300"
+            oninput="updateSliderValue(this.value)">
+            <p>Goal: <span id="sliderValue">300</span> words</p>
+            <button id="startWritingBtn" onclick="setGoal()">Start Writing</button>
         </div>
     </div>
 
@@ -34,7 +42,7 @@
 
     <div class="container-right">
         <div id="wordCounter">
-            <span id="wordCount">0</span>
+            <span id="wordCount"></span>
         </div>
     </div>
 
