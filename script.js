@@ -1,10 +1,13 @@
 let goalWordCount = 250; // Global variable to store the goal word count
+let plantLevel = 0; // Starting plant level, just a little seed :)
+let goalReached = false; // Track if the goal has been reached
 
 function clearText() {
     const editor = document.getElementById("editor");
     editor.innerHTML = ""; // Clears the content of the editor
 }
 
+// Show word count
 document.addEventListener("DOMContentLoaded", () => {
     const editor = document.getElementById("editor");
     const wordCountDisplay = document.getElementById("wordCounter");
@@ -41,6 +44,7 @@ function updateSliderValue(value) {
     const percentage = ((value - slider.min) / (slider.max - slider.min)) * 100;
     slider.style.background = `linear-gradient(to right, green ${percentage}%, #d3d3d3 ${percentage}%)`;
 }
+
 // Function to set the goal word count and hide popup
 function setGoal() {
     const sliderValue = document.getElementById("goalSlider").value;
@@ -66,4 +70,11 @@ function updateWordCount() {
     const remainingWords = goalWordCount > 0 ? goalWordCount - wordCount : 0;
     document.getElementById("wordCount").innerText = 
         `Words Remaining: ${remainingWords >= 0 ? remainingWords : 0}`;
+
+// Increase plant level only once when the goal is reached
+    if (remainingWords === 0 && !goalReached) {
+        plantLevel += 1;
+        document.getElementById("plantLevel").innerText = plantLevel;
+        goalReached = true; // Mark the goal as reached
+    }
 }
