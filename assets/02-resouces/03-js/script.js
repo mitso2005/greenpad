@@ -76,5 +76,6 @@ function updateWordCount() {
         plantLevel += 1;
         document.getElementById("plantLevel").innerText = plantLevel;
         goalReached = true; // Mark the goal as reached
+
     }
 }
