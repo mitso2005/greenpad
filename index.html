@@ -13,6 +13,7 @@
             <button onclick="document.execCommand('italic')">Italic</button>
             <button onclick="document.execCommand('underline')">Underline</button>
             <button onclick="clearText()">Clear</button>
+            <div id="liveWordCount" class="word-count">Words: 0</div>
         </div>
         <div id="editor" contenteditable="true" class="editor"></div>
         <script src="script.js"></script>
@@ -27,7 +28,7 @@
             id="goalSlider"
             min="5" 
             max="2000" 
-            step="10" 
+            step="5" 
             value="300"
             oninput="updateSliderValue(this.value)">
             <p>Goal: <span id="sliderValue">300</span> words</p>

@@ -16,12 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initially hide the word count
     wordCountDisplay.style.display = "none";
 
+    // Initialize plant level display
+    document.getElementById("plantLevel").innerText = `Plant Level: ${plantLevel}`;
+
     // Add click event listener to the "Start Writing" button
     startWritingBtn.addEventListener("click", () => {
         // Show the word count when "Start Writing" is pressed
         wordCountDisplay.style.display = "block";
-        
-        // Focus on the editor
         editor.focus();
     });
 
@@ -29,11 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
     editor.addEventListener("input", updateWordCount);
 });
 
-// Goal popup when  the page loads
+// Goal popup when the page loads
 window.onload = function () {
     const modal = document.getElementById("setGoal");
     modal.style.display = "flex";
-}
+};
 
 // Function to update the slider value display
 function updateSliderValue(value) {
@@ -53,29 +54,41 @@ function setGoal() {
     // Hide the modal
     document.getElementById("setGoal").style.display = "none";
 
-    //
-    const modal = document.getElementById("setGoal");
-
     // Update word count display to reflect the goal
     updateWordCount();
 }
 
-function updateWordCount() {
+function countWords() {
     const editor = document.getElementById("editor");
-    const text = editor.innerText.trim(); // Gets text contence from editor
+    const text = editor.textContent.trim(); // Gets text content from editor
     const words = text ? text.split(/\s+/) : []; // Split text by whitespace
     const wordCount = words.filter(word => word.length > 0).length; // Count non-empty words
-
-    // Update the word count display
     const remainingWords = goalWordCount > 0 ? goalWordCount - wordCount : 0;
+    return { wordCount, remainingWords };
+}
+
+function updateWordCount() {
+    const { wordCount, remainingWords } = countWords();
+
+    // Update the separate word count display
+    document.getElementById("liveWordCount").innerText = `Words: ${wordCount}`;
+
+    // Update the goal word count display
     document.getElementById("wordCount").innerText = 
         `Words Remaining: ${remainingWords >= 0 ? remainingWords : 0}`;
 
-// Increase plant level only once when the goal is reached
+    // Increase plant level only once when the goal is reached
     if (remainingWords === 0 && !goalReached) {
         plantLevel += 1;
-        document.getElementById("plantLevel").innerText = plantLevel;
+        document.getElementById("plantLevel").innerText = `Plant Level: ${plantLevel}`;
         goalReached = true; // Mark the goal as reached
-
     }
 }
+
+// Event listener for real-time updates
+document.addEventListener("DOMContentLoaded", () => {
+    const editor = document.getElementById("editor");
+    
+    // Add an input event listener to the editor
+    editor.addEventListener("input", updateWordCount);
+});
