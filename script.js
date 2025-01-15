@@ -1,3 +1,4 @@
+// I'm writing this from my desktop pc
 let goalWordCount = 250; // Global variable to store the goal word count
 let plantLevel = 0; // Starting plant level, just a little seed :)
 let goalReached = false; // Track if the goal has been reached
