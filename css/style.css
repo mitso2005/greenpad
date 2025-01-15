@@ -11,6 +11,10 @@ body {
     color: rgb(56, 56, 56);
 }
 
+h1 {
+    color: white;
+}
+
 h2 {
     color: white;
 }
@@ -171,7 +175,7 @@ input[type="range"]::-moz-range-thumb {
     color: #5eb461;
 }
 
-button {
+.button {
     background-color: #5eb461;
     color: white;
     padding: 10px 20px;
@@ -180,6 +184,13 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.button:hover {
     background-color: #45a049;
 }
+
+.question-container {
+    display: none; /* Hide all questions by default */
+  }
+  .question-container.active {
+    display: block; /* Show the active question */
+  }

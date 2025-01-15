@@ -3,26 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GreenPad</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Start</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js"></script>
   </head>
   <body>
     <div class="container-middle">
-      <div class="toolbar">
-        <button onclick="document.execCommand('bold')">Bold</button>
-        <button onclick="document.execCommand('italic')">Italic</button>
-        <button onclick="document.execCommand('underline')">Underline</button>
-        <button onclick="clearText()">Clear</button>
-        <div id="liveWordCount" class="word-count">Words: 0</div>
+      <div id="question1" class="question-container active">
+        <h1>Welcome to GreenPad</h1>
+        <h2>Lets make writing a habit.</h2>
+        <button class="button" onclick="nextQuestion(1)">Begin</button>
       </div>
-      <div id="editor" contenteditable="true" class="editor"></div>
-      <script src="script.js"></script>
-    </div>
 
-    <div id="setGoal" class="modal">
-      <div class="modal-contnet">
-        <h2>Make Writing a Habit.</h2>
-        <p>How many words do you want to write per day?</p>
+      <div id="question2" class="question-container">
+        <h2>Does your writing have a due date?</h2>
+        <button class="button" onclick="nextQuestion(2)">Yes</button
+        ><button class="button" onclick="nextQuestion(3)">No</button>
+      </div>
+
+      <div id="question3" class="question-container">
+        <h2>When is your piece due?</h2>
+        <input
+          type="range"
+          id="daySlider"
+          min="1"
+          max="365"
+          step="1"
+          value="7"
+          oninput="updateSliderValue(this.value)"
+        />
+        <p>Due in: <span id="sliderValue">7</span> days</p>
+        <button class="button" onclick="setDays()" onclick="nextQuestion(5)">Set Days</button>
+      </div>
+
+      <div id="question4" class="question-container">
+        <h2>How many words do you want to write per day?</h2>
         <input
           type="range"
           id="goalSlider"
@@ -33,20 +48,39 @@
           oninput="updateSliderValue(this.value)"
         />
         <p>Goal: <span id="sliderValue">300</span> words</p>
-        <button id="startWritingBtn" onclick="setGoal()">Start Writing</button>
+        <a
+          href="greenpad.html"
+          id="startWritingBtn"
+          onclick="setGoal()"
+          class="button"
+          >Let's Start Writing</a
+        >
       </div>
-    </div>
 
-    <div class="container-left">
-      <div id="documents"></div>
-    </div>
-
-    <div class="container-right">
-      <div id="wordCounter">
-        <span id="wordCount"></span>
+      <div id="question5" class="question-container">
+        <h2>How many words is your piece?</h2>
+        <input
+          type="range"
+          id="goalSlider"
+          min="50"
+          max="10000"
+          step="10"
+          value="800"
+          oninput="updateSliderValue(this.value)"
+        />
+        <p><span id="sliderValue">800</span> words</p>
+        <button class="button" id="startWritingBtn" onclick="setGoal()" onclick="nextQuestion(6)">Set Word Count</button>
       </div>
-      <div id="levelCounter">
-        <span id="plantLevel"></span>
+
+      <div id="question6" class="question-container"></div>
+        <h2>You'll need to write x words a day to finish your esssay by x date</h2>
+        <a
+        href="greenpad.html"
+        id="startWritingBtn"
+        onclick="setGoal()"
+        class="button"
+        >Let's Start Writing</a
+      >
       </div>
     </div>
   </body>

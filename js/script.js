@@ -93,3 +93,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add an input event listener to the editor
     editor.addEventListener("input", updateWordCount);
 });
+
+function nextQuestion(current) {
+    // Hide the current question
+    const currentQuestion = document.getElementById(`question${current}`);
+    currentQuestion.classList.remove('active');
+    
+    // Show the next question, if it exists
+    const nextQuestion = document.getElementById(`question${current + 1}`);
+    if (nextQuestion) {
+      nextQuestion.classList.add('active');
+    } else {
+      alert("Thank you for completing the setup!");
+      // Redirect or perform another action
+    }
+  }
