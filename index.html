@@ -20,57 +20,62 @@
         <button class="button" onclick="nextQuestion(2)">Yes</button
         ><button class="button" onclick="nextQuestion(3)">No</button>
       </div>
-
+      
       <div id="question3" class="question-container">
-        <h2>When is your piece due?</h2>
+        <h2>When is your writing due?</h2>
         <input
           type="range"
-          id="daySlider"
+          id="dueDateSlider"
           min="1"
           max="365"
           step="1"
-          value="7"
-          oninput="updateSliderValue(this.value)"
+          value="45"
+          oninput="updateSliderValue(this.value, 'dueDateValue', 'dueDateSlider')"
         />
-        <p>Due in: <span id="sliderValue">7</span> days</p>
-        <button class="button" onclick="setDays()" onclick="nextQuestion(5)">Set Days</button>
+        <p>Due in: <span id="dueDateValue">45</span> days</p>
+        <button class="button" onclick="setGoal('dueDateSlider'); nextQuestion(4)">Set Days</button>
       </div>
-
+      
       <div id="question4" class="question-container">
         <h2>How many words do you want to write per day?</h2>
         <input
           type="range"
-          id="goalSlider"
+          id="dailyWordsSlider"
           min="5"
           max="2000"
           step="5"
           value="300"
-          oninput="updateSliderValue(this.value)"
+          oninput="updateSliderValue(this.value, 'dailyWordsValue', 'dailyWordsSlider')"
         />
-        <p>Goal: <span id="sliderValue">300</span> words</p>
+        <p>Goal: <span id="dailyWordsValue">300</span> words</p>
         <a
           href="greenpad.html"
           id="startWritingBtn"
-          onclick="setGoal()"
+          onclick="setGoal('dailyWordsSlider')"
           class="button"
-          >Let's Start Writing</a
-        >
+          >Let's Start Writing</a>
       </div>
-
+      
       <div id="question5" class="question-container">
-        <h2>How many words is your piece?</h2>
+        <h2>How many words is your writing?</h2>
         <input
           type="range"
-          id="goalSlider"
+          id="totalWordsSlider"
           min="50"
           max="10000"
           step="10"
           value="800"
-          oninput="updateSliderValue(this.value)"
+          oninput="updateSliderValue(this.value, 'totalWordsValue', 'totalWordsSlider')"
         />
-        <p><span id="sliderValue">800</span> words</p>
-        <button class="button" id="startWritingBtn" onclick="setGoal()" onclick="nextQuestion(6)">Set Word Count</button>
+        <p><span id="totalWordsValue">800</span> words</p>
+        <button
+          class="button"
+          onclick="setGoal('totalWordsSlider'); nextQuestion(5)"
+        >
+          Set Word Count
+        </button>
       </div>
+      
 
       <div id="question6" class="question-container">
         <h2>You'll need to write x words a day to finish your esssay by x date</h2>

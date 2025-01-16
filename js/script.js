@@ -38,26 +38,25 @@ window.onload = function () {
 };
 
 // Function to update the slider value display
-function updateSliderValue(value) {
-    document.getElementById("sliderValue").innerText = value;
+function updateSliderValue(value, valueId, sliderId) {
+    // Update the span displaying the value
+    document.getElementById(valueId).innerText = value;
 
     // Update the slider's track color
-    const slider = document.getElementById("goalSlider");
+    const slider = document.getElementById(sliderId);
     const percentage = ((value - slider.min) / (slider.max - slider.min)) * 100;
     slider.style.background = `linear-gradient(to right, green ${percentage}%, #d3d3d3 ${percentage}%)`;
 }
-
-// Function to set the goal word count and hide popup
-function setGoal() {
-    const sliderValue = document.getElementById("goalSlider").value;
+  
+// Function to set the goal word count
+function setGoal(sliderId) {
+    const sliderValue = document.getElementById(sliderId).value;
     goalWordCount = parseInt(sliderValue, 10);
-
-    // Hide the modal
-    document.getElementById("setGoal").style.display = "none";
 
     // Update word count display to reflect the goal
     updateWordCount();
 }
+  
 
 function countWords() {
     const editor = document.getElementById("editor");
@@ -98,13 +97,13 @@ function nextQuestion(current) {
     // Hide the current question
     const currentQuestion = document.getElementById(`question${current}`);
     currentQuestion.classList.remove('active');
-    
+
     // Show the next question, if it exists
     const nextQuestion = document.getElementById(`question${current + 1}`);
     if (nextQuestion) {
-      nextQuestion.classList.add('active');
+        nextQuestion.classList.add('active');
     } else {
-      alert("Thank you for completing the setup!");
-      // Redirect or perform another action
+        alert("Thank you for completing the setup!");
+        // Redirect or perform another action
     }
-  }
+}
