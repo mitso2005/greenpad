@@ -119,6 +119,30 @@ p {
     z-index: 1000;
 }
 
+.setupQuestions {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Transparent background */
+    z-index: 1000; /* On top of other elements */
+    display: flex; /* Add this line to enable Flexbox */
+    justify-content: center;
+    align-items: center;
+}
+
+.setupQuestions-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+}
+
+
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed;
