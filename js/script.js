@@ -32,16 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Goal popup when the page loads
-window.onload = function () {
-    const modal = document.getElementById("setGoal");
-    modal.style.display = "flex";
-};
+//window.onload = function () {
+   // const modal = document.getElementById("setGoal");
+   // modal.style.display = "flex";
+//};
 
 // Function to update the slider value display
 function updateSliderValue(value, valueId, sliderId) {
     // Update the span displaying the value
     document.getElementById(valueId).innerText = value;
-
     // Update the slider's track color
     const slider = document.getElementById(sliderId);
     const percentage = ((value - slider.min) / (slider.max - slider.min)) * 100;
@@ -93,17 +92,17 @@ document.addEventListener("DOMContentLoaded", () => {
     editor.addEventListener("input", updateWordCount);
 });
 
-function nextQuestion(current) {
+function nextQuestion(current, target) {
     // Hide the current question
     const currentQuestion = document.getElementById(`question${current}`);
     currentQuestion.classList.remove('active');
 
-    // Show the next question, if it exists
-    const nextQuestion = document.getElementById(`question${current + 1}`);
+    // Show the specified target question
+    const nextQuestion = document.getElementById(`question${target}`);
     if (nextQuestion) {
         nextQuestion.classList.add('active');
     } else {
         alert("Thank you for completing the setup!");
-        // Redirect or perform another action
+        // Redirect or perform another action if needed
     }
 }

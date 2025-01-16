@@ -141,6 +141,12 @@ p {
     width: 300px;
 }
 
+.question-container {
+    display: none;
+}
+.question-container.active {
+    display: block;
+}
 
 
 .modal {
