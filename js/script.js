@@ -32,10 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Goal popup when the page loads
-//window.onload = function () {
-   // const modal = document.getElementById("setGoal");
-   // modal.style.display = "flex";
-//};
+window.onload = function () {
+   const modal = document.getElementById("setGoal");
+   modal.style.display = "flex";
+};
 
 // Function to update the slider value display
 function updateSliderValue(value, valueId, sliderId) {
@@ -56,7 +56,6 @@ function setGoal(sliderId) {
     updateWordCount();
 }
   
-
 function countWords() {
     const editor = document.getElementById("editor");
     const text = editor.textContent.trim(); // Gets text content from editor
