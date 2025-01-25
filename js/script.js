@@ -1,7 +1,37 @@
-// I'm writing this from my desktop pc
 let goalWordCount = 250; // Global variable to store the goal word count
 let plantLevel = 0; // Starting plant level, just a little seed :)
 let goalReached = false; // Track if the goal has been reached
+
+// Objects stores all info from questions
+const userInputData = {
+    dueDateStatus: null, // Yes or No
+    dueDate: null,     // Days until the due date
+    totalCount: null,     // Word count of writing
+    dailyWords: null,  // Number of words per day
+    goalType: null,    // Will implement later
+};
+
+function setUserInputData(value, dataType) {
+    userInputData[dataType] = value; // Use bracket notation
+    console.log(`Updated ${dataType}:`, userInputData);
+}
+
+function nextQuestion(current, target) {
+    console.log(`Navigating from question ${current} to question ${target}`);
+    // Hide the current question
+    const currentQuestion = document.getElementById(`question${current}`);
+    currentQuestion.classList.remove('active');
+
+    // Show the specified target question
+    const nextQuestion = document.getElementById(`question${target}`);
+    if (nextQuestion) {
+        nextQuestion.classList.add('active');
+    } else {
+        alert("Thank you for completing the setup!");
+        // Redirect or perform another action if needed
+    }
+}
+
 
 function clearText() {
     const editor = document.getElementById("editor");
@@ -13,9 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const editor = document.getElementById("editor");
     const wordCountDisplay = document.getElementById("wordCounter");
     const startWritingBtn = document.getElementById("startWritingBtn");
-
-    // Initially hide the word count
-    wordCountDisplay.style.display = "none";
 
     // Initialize plant level display
     document.getElementById("plantLevel").innerText = `Plant Level: ${plantLevel}`;
@@ -90,18 +117,3 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add an input event listener to the editor
     editor.addEventListener("input", updateWordCount);
 });
-
-function nextQuestion(current, target) {
-    // Hide the current question
-    const currentQuestion = document.getElementById(`question${current}`);
-    currentQuestion.classList.remove('active');
-
-    // Show the specified target question
-    const nextQuestion = document.getElementById(`question${target}`);
-    if (nextQuestion) {
-        nextQuestion.classList.add('active');
-    } else {
-        alert("Thank you for completing the setup!");
-        // Redirect or perform another action if needed
-    }
-}

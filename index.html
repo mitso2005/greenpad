@@ -17,10 +17,20 @@
 
       <div id="question2" class="question-container">
         <h2>Does your writing have a due date?</h2>
-        <button class="button" onclick="nextQuestion(2, 3)">Yes</button
-        ><button class="button" onclick="nextQuestion(2, 4)">No</button>
+        <button
+          class="button"
+          onclick="setUserInputData('Yes', 'dueDateStatus'); nextQuestion(2, 3)"
+        >
+          Yes
+        </button>
+        <button
+          class="button"
+          onclick="setUserInputData('No', 'dueDateStatus'); nextQuestion(2, 4)"
+        >
+          No
+        </button>
       </div>
-      
+
       <div id="question3" class="question-container">
         <h2>When is your writing due?</h2>
         <input
@@ -33,9 +43,9 @@
           oninput="updateSliderValue(this.value, 'dueDateValue', 'dueDateSlider')"
         />
         <p>Due in: <span id="dueDateValue">45</span> days</p>
-        <button class="button" onclick="setGoal('dueDateSlider'); nextQuestion(3,5)">Set Days</button>
+        <button class="button" onclick="nextQuestion(3,5)">Set Days</button>
       </div>
-      
+
       <div id="question4" class="question-container">
         <h2>How many words do you want to write per day?</h2>
         <input
@@ -53,39 +63,39 @@
           id="startWritingBtn"
           onclick="setGoal('dailyWordsSlider')"
           class="button"
-          >Let's Start Writing</a>
+          >Let's Start Writing</a
+        >
       </div>
-      
+
       <div id="question5" class="question-container">
-        <h2>How many words is your writing?</h2>
+        <h2>How many words are your writing?</h2>
         <input
           type="range"
           id="totalWordsSlider"
           min="50"
           max="10000"
           step="10"
-          value="800"
+          value="1200"
           oninput="updateSliderValue(this.value, 'totalWordsValue', 'totalWordsSlider')"
         />
-        <p><span id="totalWordsValue">800</span> words</p>
-        <button
-          class="button"
-          onclick="setGoal('totalWordsSlider'); nextQuestion(5,6)"
-        >
+        <p><span id="totalWordsValue">1200</span> words</p>
+        <button class="button" onclick="nextQuestion(5,6)">
           Set Word Count
         </button>
       </div>
-      
 
       <div id="question6" class="question-container">
-        <h2>You'll need to write x words a day to finish your esssay by x date</h2>
+        <h2 id="wordCountMessage">
+          You'll need to write <span id="wordsPerDay">x</span> words a day to
+          finish your esssay in <span id="dueDate">y</span> days.
+        </h2>
         <a
-        href="greenpad.html"
-        id="startWritingBtn"
-        onclick="setGoal()"
-        class="button"
-        >Let's Start Writing</a
-      >
+          href="greenpad.html"
+          id="startWritingBtn"
+          onclick="setGoal()"
+          class="button"
+          >Let's Start Writing</a
+        >
       </div>
     </div>
   </body>
