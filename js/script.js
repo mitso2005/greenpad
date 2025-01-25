@@ -11,6 +11,8 @@ const userInputData = {
     goalType: null,    // Will implement later
 };
 
+let wordsPerDay = userInputData.totalCount/userInputData.dueDate; // Calculate words per day
+
 function setUserInputData(value, dataType) {
     userInputData[dataType] = value; // Use bracket notation
     console.log(`Updated ${dataType}:`, userInputData);
@@ -32,7 +34,6 @@ function nextQuestion(current, target) {
     }
 }
 
-
 function clearText() {
     const editor = document.getElementById("editor");
     editor.innerHTML = ""; // Clears the content of the editor
@@ -47,22 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize plant level display
     document.getElementById("plantLevel").innerText = `Plant Level: ${plantLevel}`;
 
-    // Add click event listener to the "Start Writing" button
-    startWritingBtn.addEventListener("click", () => {
-        // Show the word count when "Start Writing" is pressed
-        wordCountDisplay.style.display = "block";
-        editor.focus();
-    });
-
     // Add an input event listener to the editor
     editor.addEventListener("input", updateWordCount);
 });
-
-// Goal popup when the page loads
-window.onload = function () {
-   const modal = document.getElementById("setGoal");
-   modal.style.display = "flex";
-};
 
 // Function to update the slider value display
 function updateSliderValue(value, valueId, sliderId) {

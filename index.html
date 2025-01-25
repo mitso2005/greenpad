@@ -43,7 +43,12 @@
           oninput="updateSliderValue(this.value, 'dueDateValue', 'dueDateSlider')"
         />
         <p>Due in: <span id="dueDateValue">45</span> days</p>
-        <button class="button" onclick="nextQuestion(3,5)">Set Days</button>
+        <button
+          class="button"
+          onclick="setUserInputData('dueDateValue', 'dueDate'); nextQuestion(3,5)"
+        >
+          Set Days
+        </button>
       </div>
 
       <div id="question4" class="question-container">
@@ -61,7 +66,7 @@
         <a
           href="greenpad.html"
           id="startWritingBtn"
-          onclick="setGoal('dailyWordsSlider')"
+          onclick="setUserInputData('dailyWordsValue', 'dailyWords')"
           class="button"
           >Let's Start Writing</a
         >
@@ -79,20 +84,24 @@
           oninput="updateSliderValue(this.value, 'totalWordsValue', 'totalWordsSlider')"
         />
         <p><span id="totalWordsValue">1200</span> words</p>
-        <button class="button" onclick="nextQuestion(5,6)">
+        <button
+          class="button"
+          onclick="setUserInputData('totalWordsValue', 'totalCount'); nextQuestion(5,6)"
+        >
           Set Word Count
         </button>
       </div>
 
       <div id="question6" class="question-container">
         <h2 id="wordCountMessage">
-          You'll need to write <span id="wordsPerDay">x</span> words a day to
-          finish your esssay in <span id="dueDate">y</span> days.
+          You'll need to write <span id="wordsPerDay"></span> words a day to
+          finish your esssay in
+          <span id="setUserInputData.dueDate"></span> days.
         </h2>
         <a
           href="greenpad.html"
           id="startWritingBtn"
-          onclick="setGoal()"
+          onclick="setUserInputData('dailyWordsValue', 'dailyWords')"
           class="button"
           >Let's Start Writing</a
         >
