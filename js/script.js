@@ -17,9 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const plantLevelDisplay = document.getElementById("plantLevel");
     const liveWordCountDisplay = document.getElementById("liveWordCount");
 
-
-    let wordsPerDay = userInputData.totalCount / userInputData.dueDate; // Calculate words per day
-
     function setUserInputData(value, dataType) {
         userInputData[dataType] = value; // Use bracket notation
         console.log(`Updated ${dataType}:`, userInputData);
@@ -29,6 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`Navigating from question ${current} to question ${target}`);
         document.getElementById(`question${current}`).classList.remove("active");
         document.getElementById(`question${target}`).classList.add("active");
+    }
+
+    function calculatedailyWords(date, words) {
+        dailyWords = words / date; // Calculate words per day
+        console.log(`Calculated dailyWords:`, dailyWords);
     }
 
     function updateSliderValue(value, valueId, sliderId) {
@@ -55,6 +57,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 setUserInputData(value, dataType);
             });
         }
+
+        // Handle dailyWords calculation
+        if (button.dataset.calculate) {
+            button.addEventListener("click", () => {
+                const [date,words] = button.dataset.calculate.split(",");
+                calculatedailyWords(date, words);
+            });
+        }
+
     });
 
     // Attach event listeners for range sliders
