@@ -69,10 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
         editor.innerHTML = ""; // Clears the content of the editor
     }
 
-    // Show word count
-    const wordCountDisplay = document.getElementById("wordCounter");
-    const startWritingBtn = document.getElementById("startWritingBtn");
-
     // Function to set the goal word count
     function setGoal(sliderId) {
         const sliderValue = document.getElementById(sliderId).value;
@@ -107,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
             goalReached = true; // Mark the goal as reached
         }
     }
-    
+
     if (editor) {
         // Add an input event listener to the editor
         editor.addEventListener("input", updateWordCount);
