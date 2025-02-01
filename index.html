@@ -35,12 +35,11 @@
         <h2>When is your writing due?</h2>
         <input
           type="range"
-          id="dueDateSlider"
+          id="dueDate"
           min="1"
           max="365"
           step="1"
           value="45"
-          oninput="updateSliderValue(this.value, 'dueDateValue', 'dueDateSlider')"
         />
         <p>Due in: <span id="dueDateValue">45</span> days</p>
         <button
@@ -55,12 +54,11 @@
         <h2>How many words do you want to write per day?</h2>
         <input
           type="range"
-          id="dailyWordsSlider"
+          id="dailyWords"
           min="5"
           max="2000"
           step="5"
           value="300"
-          oninput="updateSliderValue(this.value, 'dailyWordsValue', 'dailyWordsSlider')"
         />
         <p>Goal: <span id="dailyWordsValue">300</span> words</p>
         <a
@@ -76,12 +74,11 @@
         <h2>How many words are your writing?</h2>
         <input
           type="range"
-          id="totalWordsSlider"
+          id="totalWords"
           min="50"
           max="10000"
           step="10"
           value="1200"
-          oninput="updateSliderValue(this.value, 'totalWordsValue', 'totalWordsSlider')"
         />
         <p><span id="totalWordsValue">1200</span> words</p>
         <button

@@ -12,6 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
         goalType: null,    // Will implement later
     };
 
+    // Safely access the elements only when the DOM is fully loaded
+    const editor = document.getElementById("editor");
+    const plantLevelDisplay = document.getElementById("plantLevel");
+    const liveWordCountDisplay = document.getElementById("liveWordCount");
+
+
     let wordsPerDay = userInputData.totalCount / userInputData.dueDate; // Calculate words per day
 
     function setUserInputData(value, dataType) {
@@ -51,21 +57,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Attach event listeners for range sliders
+    document.querySelectorAll("input[type='range']").forEach((slider) => {
+        slider.addEventListener("input", () => {
+            updateSliderValue(slider.value, slider.id + "Value", slider.id);
+        });
+    });
+
     function clearText() {
         const editor = document.getElementById("editor");
         editor.innerHTML = ""; // Clears the content of the editor
     }
 
     // Show word count
-    const editor = document.getElementById("editor");
     const wordCountDisplay = document.getElementById("wordCounter");
     const startWritingBtn = document.getElementById("startWritingBtn");
-
-    // Initialize plant level display
-    document.getElementById("plantLevel").innerText = `Plant Level: ${plantLevel}`;
-
-    // Add an input event listener to the editor
-    editor.addEventListener("input", updateWordCount);
 
     // Function to set the goal word count
     function setGoal(sliderId) {
@@ -101,7 +107,20 @@ document.addEventListener("DOMContentLoaded", () => {
             goalReached = true; // Mark the goal as reached
         }
     }
+    
+    if (editor) {
+        // Add an input event listener to the editor
+        editor.addEventListener("input", updateWordCount);
+    }
 
-    // Event listener for real-time updates
-    editor.addEventListener("input", updateWordCount);
+    if (plantLevelDisplay) {
+        // Initialize plant level display
+        const plantLevel = 1;
+        plantLevelDisplay.innerText = `Plant Level: ${plantLevel}`;
+    }
+
+    if (liveWordCountDisplay) {
+        // Initialize word count display
+        liveWordCountDisplay.innerText = `Words: 0`;
+    }
 });
