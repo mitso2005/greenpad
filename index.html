@@ -12,20 +12,20 @@
       <div id="question1" class="question-container active">
         <h1>Welcome to GreenPad</h1>
         <h2>Lets make writing a habit.</h2>
-        <button class="button" onclick="nextQuestion(1,2)">Begin</button>
+        <button class="button" data-next="1,2">Begin</button>
       </div>
 
       <div id="question2" class="question-container">
         <h2>Does your writing have a due date?</h2>
         <button
           class="button"
-          onclick="setUserInputData('Yes', 'dueDateStatus'); nextQuestion(2, 3)"
+          data-input="Yes,dueDateStatus" data-next="2,3"
         >
           Yes
         </button>
         <button
           class="button"
-          onclick="setUserInputData('No', 'dueDateStatus'); nextQuestion(2, 4)"
+          data-input="No,dueDateStatus" data-next="2,4"
         >
           No
         </button>
@@ -45,7 +45,7 @@
         <p>Due in: <span id="dueDateValue">45</span> days</p>
         <button
           class="button"
-          onclick="setUserInputData('dueDateValue', 'dueDate'); nextQuestion(3,5)"
+          data-input="dueDateValue,dueDate" data-next="3,5"
         >
           Set Days
         </button>
@@ -66,7 +66,7 @@
         <a
           href="greenpad.html"
           id="startWritingBtn"
-          onclick="setUserInputData('dailyWordsValue', 'dailyWords')"
+          data-input="dailyWordsValue,dailyWords"
           class="button"
           >Let's Start Writing</a
         >
@@ -86,7 +86,7 @@
         <p><span id="totalWordsValue">1200</span> words</p>
         <button
           class="button"
-          onclick="setUserInputData('totalWordsValue', 'totalCount'); nextQuestion(5,6)"
+          data-input="totalWordsValue,totalCount" data-next="5,6"
         >
           Set Word Count
         </button>
@@ -101,7 +101,7 @@
         <a
           href="greenpad.html"
           id="startWritingBtn"
-          onclick="setUserInputData('dailyWordsValue', 'dailyWords')"
+          data-input="dailyWordsValue,dailyWords"
           class="button"
           >Let's Start Writing</a
         >
