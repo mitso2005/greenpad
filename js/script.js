@@ -12,10 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         goalType: null,    // Will implement later
     };
 
-    // Safely access the elements only when the DOM is fully loaded
-    const editor = document.getElementById("editor");
-    const plantLevelDisplay = document.getElementById("plantLevel");
-    const liveWordCountDisplay = document.getElementById("liveWordCount");
+    
 
     // Setup Sliders
     function updateSliderValue(value, valueId, sliderId) {
@@ -35,7 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // User Data Updates
     function setUserInputData(value, dataType) {
         userInputData[dataType] = value;
-        console.log(`Updated ${dataType}:`, userInputData);
+    
+        console.log(`Updated ${dataType}: ${userInputData[dataType]}`); // Shows exact key & value
+        console.log("Full userInputData:", userInputData); // Still logs full object for reference
     }
 
     // Setup Question Direction
@@ -73,8 +72,25 @@ document.addEventListener("DOMContentLoaded", () => {
         // Handle user input data
         if (button.dataset.input) {
             button.addEventListener("click", () => {
-                const [value, dataType] = button.dataset.input.split(",");
-                setUserInputData(value, dataType);
+                const [variable, dataType] = button.dataset.input.split(",");
+
+                let dynamicValue;
+                
+                // Dynamically fetch the correct value based on the variable (e.g., 'dueDateValue', 'dailyWordsValue')
+                if (variable === "dueDateValue") {
+                    dynamicValue = document.getElementById("dueDate").value;
+                } else if (variable === "dailyWordsValue") {
+                    dynamicValue = document.getElementById("dailyWords").value;
+                } else if (variable === "totalWordsValue") {
+                    dynamicValue = document.getElementById("totalWords").value;
+                } else if (variable === "Yes") {
+                    dynamicValue = "Yes";
+                } else if (variable === "No") {
+                    dynamicValue = "No";
+                }
+
+                // Set the data
+                setUserInputData(dynamicValue, dataType);
             });
         }
 
@@ -85,8 +101,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 calculatedailyWords(date, words);
             });
         }
-
     });
+
+    // Safely access the elements only when the DOM is fully loaded
+    const editor = document.getElementById("editor");
+    const plantLevelDisplay = document.getElementById("plantLevel");
+    const liveWordCountDisplay = document.getElementById("liveWordCount");
 
     // Clear Text Button
     function clearText() {
@@ -99,13 +119,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const text = editor.textContent.trim(); // Gets text content from editor
         const words = text ? text.split(/\s+/) : []; // Split text by whitespace
         const wordCount = words.filter(word => word.length > 0).length; // Count non-empty words
-        const remainingWords = goalWordCount > 0 ? goalWordCount - wordCount : 0;
+        const remainingWords = userInputData.dailyWords > 0 ? userInputData.dailyWords - wordCount : 0;
         return { wordCount, remainingWords };
     }
 
     // Live Word Count Updates
     function updateWordCount() {
         const { wordCount, remainingWords } = countWords();
+        console.log(userInputData.dailyWords);
 
         // Update the separate word count display
         document.getElementById("liveWordCount").innerText = `Words: ${wordCount}`;
@@ -126,6 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (editor) {
         // Add an input event listener to the editor
         editor.addEventListener("input", updateWordCount);
+        updateWordCount();
     }
     if (plantLevelDisplay) {
         // Initialize plant level display
