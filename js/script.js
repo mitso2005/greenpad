@@ -17,27 +17,47 @@ document.addEventListener("DOMContentLoaded", () => {
     const plantLevelDisplay = document.getElementById("plantLevel");
     const liveWordCountDisplay = document.getElementById("liveWordCount");
 
+    // Setup Sliders
+    function updateSliderValue(value, valueId, sliderId) {
+        document.getElementById(valueId).innerText = value;
+        const slider = document.getElementById(sliderId);
+        const percentage = ((value - slider.min) / (slider.max - slider.min)) * 100;
+        slider.style.background = `linear-gradient(to right, green ${percentage}%, #d3d3d3 ${percentage}%)`;
+    }
+
+    // Attach event listeners for range sliders
+    document.querySelectorAll("input[type='range']").forEach((slider) => {
+        slider.addEventListener("input", () => {
+            updateSliderValue(slider.value, slider.id + "Value", slider.id);
+        });
+    });
+
+    // User Data Updates
     function setUserInputData(value, dataType) {
-        userInputData[dataType] = value; // Use bracket notation
+        userInputData[dataType] = value;
         console.log(`Updated ${dataType}:`, userInputData);
     }
 
+    // Setup Question Direction
     function nextQuestion(current, target) {
         console.log(`Navigating from question ${current} to question ${target}`);
         document.getElementById(`question${current}`).classList.remove("active");
         document.getElementById(`question${target}`).classList.add("active");
     }
 
+    // Calculating Daily Word Count
     function calculatedailyWords(date, words) {
         dailyWords = words / date; // Calculate words per day
         console.log(`Calculated dailyWords:`, dailyWords);
     }
 
-    function updateSliderValue(value, valueId, sliderId) {
-        document.getElementById(valueId).innerText = value;
-        const slider = document.getElementById(sliderId);
-        const percentage = ((value - slider.min) / (slider.max - slider.min)) * 100;
-        slider.style.background = `linear-gradient(to right, green ${percentage}%, #d3d3d3 ${percentage}%)`;
+    // Function to set the goal word count
+    function setGoal(sliderId) {
+        const sliderValue = document.getElementById(sliderId).value;
+        goalWordCount = parseInt(sliderValue, 10);
+
+        // Update word count display to reflect the goal
+        updateWordCount();
     }
 
     // Attach event listeners dynamically
@@ -68,27 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    // Attach event listeners for range sliders
-    document.querySelectorAll("input[type='range']").forEach((slider) => {
-        slider.addEventListener("input", () => {
-            updateSliderValue(slider.value, slider.id + "Value", slider.id);
-        });
-    });
-
+    // Clear Text Button
     function clearText() {
         const editor = document.getElementById("editor");
         editor.innerHTML = ""; // Clears the content of the editor
     }
 
-    // Function to set the goal word count
-    function setGoal(sliderId) {
-        const sliderValue = document.getElementById(sliderId).value;
-        goalWordCount = parseInt(sliderValue, 10);
-
-        // Update word count display to reflect the goal
-        updateWordCount();
-    }
-
+    // Show Word Count
     function countWords() {
         const text = editor.textContent.trim(); // Gets text content from editor
         const words = text ? text.split(/\s+/) : []; // Split text by whitespace
@@ -97,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return { wordCount, remainingWords };
     }
 
+    // Live Word Count Updates
     function updateWordCount() {
         const { wordCount, remainingWords } = countWords();
 
@@ -115,17 +122,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Page Elements
     if (editor) {
         // Add an input event listener to the editor
         editor.addEventListener("input", updateWordCount);
     }
-
     if (plantLevelDisplay) {
         // Initialize plant level display
         const plantLevel = 1;
         plantLevelDisplay.innerText = `Plant Level: ${plantLevel}`;
     }
-
     if (liveWordCountDisplay) {
         // Initialize word count display
         liveWordCountDisplay.innerText = `Words: 0`;
